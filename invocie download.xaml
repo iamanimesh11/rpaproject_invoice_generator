@@ -1,0 +1,522 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="invocie_download" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_url" Type="InArgument(x:String)" />
+    <x:Property Name="in_logopath" Type="InArgument(x:String)" />
+    <x:Property Name="in_fromName" Type="InArgument(x:String)" />
+    <x:Property Name="in_first_name" Type="InArgument(x:String)" />
+    <x:Property Name="in_shipAddress" Type="InArgument(x:String)" />
+    <x:Property Name="in_InTrans_number" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_duedate" Type="InArgument(x:String)" />
+    <x:Property Name="in_PoNummber" Type="InArgument(x:String)" />
+    <x:Property Name="in_quantity" Type="InArgument(x:String)" />
+    <x:Property Name="in_amount" Type="InArgument(x:String)" />
+    <x:Property Name="in_taxconfig" Type="InArgument(x:String)" />
+    <x:Property Name="in_notesconfig" Type="InArgument(x:String)" />
+    <x:Property Name="in_invociepath" Type="InArgument(x:String)" />
+    <x:Property Name="in_sheetname" Type="InArgument(x:String)" />
+    <x:Property Name="out_invoiceID" Type="OutArgument(x:Int32)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1114.4,7320.800000000001</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>invocie_download_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="invocie_download" sap:VirtualizedContainerService.HintSize="686.4,7256" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Default="20301" Name="invoiceNumber" />
+      <Variable x:TypeArguments="x:String" Default="[(New DateTime(1900, 1, 1).AddDays(cint(in_duedate) - 2)).ToString(&quot;MM/dd/yyyy&quot;)]" Name="due_date" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="624,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;using browser edge now&quot;]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:02" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;using chromium API ,let this process execute on screen and thus avoid  cursor&quot;]" />
+    <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="624,5884.8" sap2010:WorkflowViewState.IdRef="RetryScope_1">
+      <ui:RetryScope.ActivityBody>
+        <ActivityAction>
+          <Sequence sap:VirtualizedContainerService.HintSize="582.4,5708.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="520,5596.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Free Invoice Generator" sap:VirtualizedContainerService.HintSize="483.2,5365.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" ScopeGuid="3de11fbd-c6f6-4138-8718-92c7848378bd" Version="V2" WindowResize="Maximize">
+                  <uix:NApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,5148.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Default="16/07/2023" Name="invocieTodayDate" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,144" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;filling the details of :&quot; + in_InTrans_number.ToString + Environment.NewLine+&#xA;&quot;Invoice from: &quot;+ in_fromName.ToString +  Environment.NewLine+&#xA;&quot;TOL &quot;+ in_first_name.ToString + Environment.NewLine+&#xA;&quot;Ship to&quot; + in_shipAddress.ToString + Environment.NewLine+&#xA;&quot;Inovice ID&quot; + invoiceNumber.ToString + Environment.NewLine+&#xA;&quot;date of generation&quot; + invocieTodayDate.ToString+ Environment.NewLine+&#xA;&quot;due date&quot;+  in_duedate.ToString + Environment.NewLine+&#xA;&quot;PO number&quot; + in_PoNummber.ToString + Environment.NewLine+&#xA;&quot;quantiyy:&quot; +in_quantity.ToString +  Environment.NewLine+&#xA;&quot;amount:&quot; +in_amount.ToString + Environment.NewLine+&#xA;&quot;tax&quot;  +in_taxconfig.ToString]" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '+ Add Your Logo'" sap:VirtualizedContainerService.HintSize="387.2,157.6" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="177, 322, 250, 167" CvTextArea="209, 392, 186, 26" CvTextArgument="+ Add Your Logo" CvType="Button" DesignTimeRectangle="176, 329, 253, 167" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'+ Add Your Logo'" Guid="d935d9f0-4e5d-4b4a-a11b-afdb5d7b3bbd" InformativeScreenshot="7b439bf571222f4632ade82f12e32f9c.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free*' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvElementArea="177, 330, 252, 166" CvTextArea="209, 398, 186, 27" CvTextArgument="+ Add Your Logo" CvType="Button" DesignTimeRectangle="178, 407, 250, 25" ElementType="InputBox" FriendlyName="'C:\fakepath\input logo.…'" FullSelectorArgument="&lt;webctrl class='file-4' tag='INPUT' type='file' /&gt;" FuzzySelectorArgument="&lt;webctrl class='file-4' tag='INPUT' type='file' aaname='' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Double" DelayAfter="1" DisplayName="Type Into 'File name'" EmptyFieldMode="MultiLine" sap:VirtualizedContainerService.HintSize="387.2,254.4" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_logopath]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="230, 927, 1411, 29" DesignTimeScaleFactor="1.25" ElementType="DropDown" FriendlyName="'File name'" FullSelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" Guid="a4b6212f-d5be-44bd-9024-eee5836f704b" ImageBase64="iVBORw0KGgoAAAANSUhEUgAABYcAAAAhCAYAAACC9RS7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAG6SURBVHhe7dixjYNQFETRLYsUyR0QuwdKI3ZKYawIsIZdJMd4zkhH+vqvg/szDMMGAAAAAEAXcRgAAAAAoNA7DpuZmZmZmZmZmZnZ9+8yDh9vAAAAAAC+T3ZgcRgAAAAAoER2YHEYAAAAAKBEdmBxGAAAAACgRHZgcRgAAAAAoER2YHEYAAAAAKBEdmBxGAAAAACgRHZgcRgAAAAAoER2YHEYAAAAAKBEdmBxGAAAAACgRHZgcRgAAAAAoER2YHEYAAAAAOBmXq/XNk3T5W0cx21ZlstbdmBxGAAAAADgZvYwfBWIjzA8z/Pp/5AdWBwGAAAAALihv4H4UxjeZQcWhwEAAAAAbuoIxM/n82MY3mUHFocBAAAAAG7m8Xi833sgXtf1FIbznrIDi8MAAAAAACWyA4vDAAAAAAAlsgOLwwAAAAAAJbIDi8MAAAAAACWyA4vDAAAAAAAlsgOLwwAAAAAAJbIDi8MAAAAAACWyA4vDAAAAAAAlsgOLwwAAAAAAJbIDi8MAAAAAACWyA4vDAAAAAAAlsgOf4rCZmZmZmZmZmZmZfff+xWEAAAAAAHqIwwAAAAAAdYbtFyYfvX/CnSf9AAAAAElFTkSuQmCC" InformativeScreenshot="e1f5d0043d72dbe5e556897f269a0645.png" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='#32770' title='Open' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                          <uix:NTypeInto.VerifyOptions>
+                            <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" ExpectedText="[in_logopath]" Mode="Appears" Retry="True">
+                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            </uix:VerifyExecutionTypeIntoOptions>
+                          </uix:NTypeInto.VerifyOptions>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="387.2,178.4" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V3" />
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="from field" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,52.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_fromName]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="176, 387, 346, 76" CvTextArea="193, 397, 276, 21" CvTextArgument="Who is this invoice from? (required)" CvType="InputBox" DesignTimeRectangle="178, 387, 344, 75" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl tag='TEXTAREA' placeholder='Who is this invoice from? (required)' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TEXTAREA' type='' class='form-control expanding-init ng-touched ng-dirty ng-valid-parse ng-invalid ng-invalid-required' aaname='' /&gt;" Guid="4d2e0711-90b5-4488-b255-d8ade5a7c2be" ImageBase64="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" InformativeScreenshot="6eba13efd118f0a53c4e31bc3e24d787.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into '&quot;to&quot;" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,254.4" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_first_name]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="192, 524, 297, 79" CvTextArea="206, 536, 258, 21" CvTextArgument="Who is this invoice to? (required)" CvType="InputBox" DesignTimeRectangle="193, 526, 295, 75" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl tabindex='17' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='17' tag='TEXTAREA' type='' class='form-control ng-pristine ng-untouched expanding-init ng-invalid ng-invalid-required' aaname='' /&gt;" Guid="77424edc-39e8-481c-b0c5-b0b8710c400f" ImageBase64="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" InformativeScreenshot="c6e9f537cce4020e853e773ea9c7e259.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="Selector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Bill To" CvType="Text" DesignTimeRectangle="193, 480, 250, 42" ElementType="InputBox" FriendlyName="'Bill To'" FullSelectorArgument="&lt;webctrl tabindex='16' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='16' tag='INPUT' type='' class='input-label form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAP4AAAAuCAYAAAAIqKR+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJLSURBVHhe7dpBSxtBHIfhfutFQmEpOSQlHkQWwYMHtxACKeTgJaW5KAptkRyUEiRQPARMwUsOXkL4dyY7wcUlDUUzRX/vAwPuZHT38rqzq+8MgBzCBwQRPiCI8AFBhA8IInxAEOEDgggfEET4gCDCBwQRPiCI8AFBhA8IInxAEOEDgggfEPSy4V/nliRJdezUrL6f2+mvh7DQm9qg5T5rDdxX3pXlbu3u1+KoevzE74Htls+xduTuJwEo20r4zYO2tTulcbRnac1HmFr3Jqx9bvizkfXL5+hk1vShN7LSnB8XNgnfAqCwlfDz63Bcdtcv7tCdUZh46h/DryjWJ5+4vwObxAt/FebxMBw/845fsT782fjU8v3Uav7zpGZp5bED0BIn/PnMxl8yS91Wv/1zHibjhP/grin18x9zG3wb2vCsZ1nd/wJI3XUSPzTFebm3HC60y/uw0IsQ/mJk3dSfo2/TRZjz5rfWa7j5xgnP/5AU/eXe4fkq5Ajh33SXd/ujH6tdxqPZ2Z67nrqd3IYJQEi8Z/z5xPo+9J1Du5j5iQjhL69nTdx/u1bgjYv4cs/dZc+z0ueED/wvbzv8jVv9pvXvwgQgJF74i2mx1U+yeFv9TS/3PvSMR3woivNy7ziz5nsffWLp53FYHCF8hz/nAVVbCb86apa2Mutd3tvjpjtO+F71H3i69n1C9ND1suEDeBUIHxBE+IAgwgcEET4giPABQYQPCCJ8QBDhA4IIHxBE+IAgwgcEET4giPABQYQPCCJ8QBDhA3LM/gAzSqKOQw40rwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <uix:NTypeInto.VerifyOptions>
+                            <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                              <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                <InArgument x:TypeArguments="x:Boolean" />
+                              </uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            </uix:VerifyExecutionTypeIntoOptions>
+                          </uix:NTypeInto.VerifyOptions>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'in_shipAddress'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_shipAddress]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="515, 650, 298, 78" CvTextArea="533, 661, 75, 21" CvTextArgument="(optional)" CvType="InputBox" DesignTimeRectangle="518, 652, 295, 75" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl tabindex='19' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='19' tag='TEXTAREA' type='' class='form-control ng-pristine ng-valid expanding-init ng-touched' aaname='' /&gt;" Guid="6da62b4c-860b-474a-a459-83415a9fbcc7" ImageBase64="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" InformativeScreenshot="27f96de36d1888ca3259f97ecf9c96ed.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Ship To" CvType="Text" DesignTimeRectangle="518, 607, 250, 42" ElementType="InputBox" FriendlyName="'Ship To'" FullSelectorArgument="&lt;webctrl tabindex='18' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='18' tag='INPUT' type='' class='input-label form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAP4AAAAuCAYAAAAIqKR+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAOzSURBVHhe7drNS+NAHMbx/a9FghBKWFppD6UEwUNZjFDEwvYQD4K5VBTsIhEUKYsgHgpW1ENZCkspz86kk/rSabdqFO3v+UBgM6bZXL7NZJpvICJxGD6RQAyfSCCGTyQQwycSiOETCcTwiQRi+EQCMXwigRg+kUAMn0gghk8kEMMnEojhEwnE8IkEyj78+zaizTK8lSUsLenNgVv00Ti+w8AckjgLkr8HZ2Z/iu5eSR1XQnRjBl7jJkIpuZb/bQFOzUeIFlm24V9HKC+rgJYdFNYC1LZqqG34KJgvAW/rFH1z6IeG32tjV1/LeFPXpEPP+4/G9HaIjvkI0SLLMPwB4h86+jKiazOUGvYQb7gq4ALCtKw5w38fpwh0+Ju8v5NMGYbfRVRUMRUj9S+LqxCeis0/uBvtp+Efd3C4WYKjZwr6saBSR3w/OkR7esc3/8dmjLuTOkpmJuHkq4guesnx85kefu+iiaDiwtF/T64nQPNyPE8hWgiZTvXb2+quru744TwRmvD1Y4HnN9A8idHaWYenvwDy4XjKbQ0/58Jd9rC+00J8FCFY1ZG6qJ0/WUWYwR5+X12Tq8dXA0RHMeL9BnxvdO7gjPHT4sj2Gb/fRj2JUG0rBfgboQr6Ap2+Jcg0/Grr4blf6ewU1HgBu+ZxwRr+8xCHVwjzavzRF8ZslvCH6tpdNVbcRXdoxrTBFRovOjfR55dt+NpwgO5ZhNpaCa6jIx1tzvdn0/F0qn9i9lPpuHn2t4ZveZwYHVdGdGsGZrKE/7ue3O2rvya/pHr7ZXVuD+GVGSD64rIP/5nBnw4ubFPmZ4GPzRO+bVFu2vmsLOEnn58S94vOTfT5vXv4Y4M2anoqXY6QLO+9U/i1c7M/E8Mn2bILv11PVsJtU+WRHpoVFVs6TX9L+GuH6mxPjY7zcTjX4v5rpvoP6w5EX1124f+NUdUr8rkqWreT8fQvG8nbc+52ezTwlvDV/pMI1WyinlPjlebEF4LdKxb3cg3wEZ8WRaZT/fHPYWpz8j6C5G24AH7eScaWcgFO08X4N4WvNqeEYE//nBdiXa8f2F4cmsoSvsKf80iKzJ/xB7cxwmoZXs7ErjYnV4L/M8bd44nAW8JXd+X4oGpeBTYv/VhmGdPZw9cmX+Cpo9Vh9LRYPm5xLxNp+FPeDiSiuTB8IoEYPpFADJ9IoC8WPhFlgeETCcTwiQRi+EQCMXwigRg+kUAMn0gghk8kEMMnEojhEwnE8IkEYvhEAjF8IoEYPpE4wD/0lWSxHzVu7gAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="1" DisplayName="Type Into '#' invoice numbebr" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[(invoiceNumber+in_InTrans_number).ToString]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="1250, 427, 183, 50" CvTextArea="1404, 442, 12, 16" CvTextArgument="7" CvType="InputBox" DesignTimeRectangle="1264, 429, 168, 47" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'7'" FullSelectorArgument="&lt;webctrl tabindex='11' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='11' tag='INPUT' type='' class='form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" Guid="479a871e-8a1f-4cf8-a906-27ee4a71ee04" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKwAAAAzCAYAAAAKAeNOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHeSURBVHhe7d0xS0JRGIdxv5KD1KRLc4PQN4imJsdoLwgKpMGhLxAEgVsQuBSIWFFWZAmRmGRYQdFwIXi7x44RBA15Ltw/PD948d7DHR8uR0ROxgAhBAspmePza3NzdH5jB0cXDJOaObu6tcvOnfUfn32ucbCD4Yu5cQ8AaXP/MLRW+9b6g6fRPcEi9XpxtJed7uiaYCHBbQ8cgoWEcZ8ECwkECykECykECykECykECykECykECykECykECykECykEi3BOypbNTf8xZTv1j/4XwSKcbs02K5Xfs7poM3GwU6U9G/pH/4tgkbDIGhtFy87Fb9d3vzQBgkWiosM1m8oVbb0Z+ZXJECySE7VsfTbeCizX7NUvTYpgkZjeznz8RWvetr/+JBAEwSIZH23bCvx2dQgWiYjqbu+at5V6mL3rGMEiAZE11vKWLZTt9MMvBUKwSEDLNgvxdqDc8vfhECzC61dtITdtS/tvfiEcgkV4TfcTbdG22v4+IIJFcMNqKQ62ZLsDvxAQwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIKwUIK53RBhju+05056xAsUs0d23n286xZTvNm0jpfp3l3v2N1Mv4TkECwEGL2CXT7N9RoEMQTAAAAAElFTkSuQmCC" InformativeScreenshot="475a4c97487ebbbb5eced2b568896e82.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvElementArea="1218, 428, 46, 47" CvTextArea="1234, 441, 15, 18" CvTextArgument="#" CvType="Button" DesignTimeRectangle="1220, 429, 46, 47" ElementType="Text" FriendlyName="'#'" FullSelectorArgument="&lt;webctrl class='input-group-text' parentname='documentForm' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl class='input-group-text' parentname='documentForm' tag='SPAN' type='' aaname='#' check:innerText='#' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADIAAAAzCAYAAADVY1sUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHkSURBVGhD7Zoxa8JAGIb7Vxyk5Jd0aydBUASdxMWxg4u49BeUDqkgOsXFrZNOdulgpdWkaKMNDaWkNNj6B956FiXXJNIm9biEO3iWFw58uO/7TsgdICYrviL2xxKTuYn7hxlux1NuGYwfcT1Qt1Ai05WAOn2CbrzAel9wDfnxzrUVsRfLtcTrm+25kTd8RSbzZ8wicBIbfEXuVj3htYFXfEVIA3lt4BUhwhtChDeECG8IEd4QIn+lW5WQqqt03qshkW5i6MwCwkjEhFKSUGybVK61CkicXsF0ZEFhJKJCTkuo9Oj85uIEh2d9KgsKI5E+KskCZI3OSbllGjqVBWWvIlpjVTpJ6VeEFWJzIoNLHCVr6FL5EOfH7nILChsRMp1yTWhU7l1uQWEiorfLSOQVWmSiIJMsQzEcWQiYiKx7pfpjOo2aSLnKLTh7FNEh57wb2034EmNwIt+XYaZFT6V1uZU60B1ZGBiIeF+Gw3rWXW4hYCBCplMW8ojO//MyJOxfxOig6JpOOpp593+vMOxfxLKg65YrNw0TpkVnYWBQWmwQIrwhRHhDiPCGEOENIcIb8ReJzVdd8p09Ci8eNviK2IvPeLx8IGvzFiUKLyB2ipBFToaUGekZMgB4ZefroCivmIgAX6KpOKZxysuwAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT dp1689491115565'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,254.4" sap2010:WorkflowViewState.IdRef="NTypeInto_6" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[invocieTodayDate]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/5" CvType="InputBox" DesignTimeRectangle="1252, 525, 180, 42" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT dp1689491115565'" FullSelectorArgument="&lt;webctrl id='dp168*' tag='INPUT' tabindex='21' class='form-control datepicker date ng-pristine ng-untouched ng-valid hasDatepicker' /&gt;" FuzzySelectorArgument="&lt;webctrl id='dp16*' tag='INPUT' type='' class='form-control datepicker date ng-pristine ng-untouched ng-valid hasDatepicker' aaname='' /&gt;" Guid="51e54d55-d046-4a66-8336-cc37638f62e4" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALgAAAAuCAYAAACbDNOZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEvSURBVHhe7d0xS8RAFIVR///vEjtFBBUL2cJGFhYW+3XkggMGN31yOQdeE1J+GabKuxlQTOBUEzjVrgZ+PJ3H09th3D28jNv7Z2M2P2k1zabdv/4Ffvj4HI+v7+N0/hqXy/fvU9i2tJpm024anhaBp/68IGz2Ku2m4XmSLwLPEZ+vAPYsDaflWASee4zTm71Lw2k5FoHnsg4NZssCp5LAqSZwqgmcagKnmsCpJnCqCZxqAqeawKkmcKoJnGoCp5rAqSZwqgmcagKnmsCpJnCqCZxqAqeawKkmcKoJnGoCp5rAqSZwqgmcagKnmsCpJnCqXQ3cD/BpsPoDfCtMaLC6wsQSKvYu7a4uoQprBNmjtJpm0+7qGsEp9eeIzz0ml3Vjtj5pNc3Ok3u6Gjh0GOMHh3LEc0pV1GkAAAAASUVORK5CYII=" InformativeScreenshot="e679590bed3aa38c3d6bcbe43f4c8dc8.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Payment Terms" CvType="Text" DesignTimeRectangle="827, 525, 420, 42" ElementType="InputBox" FriendlyName="'Date'" FullSelectorArgument="&lt;webctrl tabindex='20' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='20' tag='INPUT' type='' class='input-label form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <uix:NTypeInto.VerifyOptions>
+                            <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" ExpectedText="[invocieTodayDate]" Mode="Appears" Retry="True">
+                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            </uix:VerifyExecutionTypeIntoOptions>
+                          </uix:NTypeInto.VerifyOptions>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="due date Type Into 'Jul 18, 2023'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,254.4" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[due_date]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="1250, 371, 183, 44" CvTextArea="1319, 383, 97, 20" CvTextArgument="Jul 18, 2023" CvType="InputBox" DesignTimeRectangle="1252, 373, 180, 42" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'Jul 18, 2023'" FullSelectorArgument="&lt;webctrl id='dp168*' tag='INPUT' tabindex='25' /&gt;" FuzzySelectorArgument="&lt;webctrl id='dp1689487056799' tag='INPUT' type='' class='form-control datepicker due-date ng-pristine ng-valid hasDatepicker ng-touched' aaname='' /&gt;" Guid="d071126c-fa5a-477b-960b-340790d596b5" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALgAAAAuCAYAAACbDNOZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAYMSURBVHhe7Z3BSyNJFIf3X9rDoKd4MTCgzCEgKIIijHNSBiIDQURwYXAgoBByyEEICDkEFwI5iIIijOsiibuuG9YQcBVmVXaWDDNEPDRk9rfvdVcn3Z1OTNrJatr3QR+qurqrK/mq8qq6tb+DIPgYEVzwNa6C//PpC34vXeDnX0/x0y9/yCbbo9/YVXaW3bXSIPjFX3/jt+Kf+PSlgq9f/1W5gvC4YVfZWXaXHTaxCc72cwERW+hV2F122BzJbYLzEM+9QBB6GXaYXWZsgnMcI6O30Ouww+wyYxOcg3VB8AOmyyK44EtEcMHXiOCCrxHBBV8jggu+RgQXfI0ILvgaEVzwNSK4Z8rIvO7H989iOFE5bXEco2PCyHxU6TbQ6JhQk3q0syyWp4fQ94yvZRChN0nkOji3jWoZubUIxoYCdC46X3AUc2t5lKtqv4kqFwpynQEMTi8iXbhRO+tUSnRtM6MI6NfG5aLIlBrLlY9SmJ8abF2nR0Rwz/w/glcKSUwONKmnlCTx+9E3voj1rTxyWyTKOMk5EMZmp5JXr5AJ87ETmF/fRu4wj811kpjPH87isibcDXYXLOXeZ7Eyw3KOIl7QVBmzU/YjMBND5j1dG5eb5o4zipXjxnKhNyls6nUuYozaa6/TOyK4Z7osuHZFo+SMGv3c6zlJsGhR7N+qDObzNuao/HCypDLaQzuM0q9ACCtHdfkY7YDzA1g+VPmnSQxz+sBSjjsHfxZTG7jUM66QnqL0a4ek1Qsjv1auhLUXRrmynjYw64wXVMY9EME94xRcpWPOb8WR36bgJzE+dwBjb/eQy4TdBecyExs4V2mDAla4QzRcR2uKqQnqTDHknKPm7QGW6HyzWUPBYjJEnYquxVGusrNYb1d5D0sU5rzKXBk7LZynRutt4XLjQ1jacYQt9Ms0THWuHKv0PRDBPdNlwZNhrB0aUpWz7oLzqBugTjCbLqHCwlVvUEyHafSzhwv3Qh+x+zGvS1jGZpja4hhxdS42MMZSHqm0KzfYjNDxL5Ioqhwn2oc84hzKjCRw8g2aIIJ7pruCW2kmOFM5TmCSR+za9hJrLhM+T9Ti8ihyumyqLat5fbeNj1nMUv3mSO+GGW9P/tg4spvH6214/ha7HXw+rRDBPfPwgmskN0/IahM5c5IZjCBzcc/hr1rGfpTDCeukUMXWDW0k7hBcO9vAbKvJ44cCdmmSuZ9NYG6E6qCJcuZa7bsHIrhnHljwqjFBaxDGnPCNpByxeQfwOSLGysjygVVY1ZYOR/DKkdER+8I0X7BOiJtBcf8yrxxFtnHfvysTwT3zwIKrmNe2mqGwTfg6pUIxsL7USKHOqfPcncfgl9mIvhIU+mGvo2W/3Kr1s/WOCN4OPNsfGVQTLRMlbm0VQ6UX9hyjTgFxHo16QfBrbidd6wjFwE3Cg9arKDOWsEKjsi/15b7JZIlSLhRSCAVD1JFUuoaG/Xd0HQM00VQ5XhHB26Ga15fe+t4d1L8o82e0JjTfAKE0rxBYvnztKKavQnQrRGlca1YhiuM67uS2gBVdbqqnVRjR1jo4j9y8mhOgkMVlQmlS2cO883Nlrinc4ZAmmnfvGB0ggreFhpMET7gCGAxHEU9EMavfzrZ/0TyK8S1z2125YBiz3QhRiMpBVN0tjCLNdzItdxWtdwuN41vXWUxy+/oxtpCg9jVu6WPz14vDFG77KOYcdzJrdX4mcbnzP5/Bssu54gkKV4yStY4wtmB8ZvvZGF7xIwB3dbQ2EcHbxfb8BUk1EqmtU9fRcJ6NYlLJrz97cUadg2/IdEFwRn/ew/YsSgybjuc97hZc/Rro53DfbJPHO55FMcKVxnPUN3tbyodJzFEIqO/jZ1Fi2yh+o/9aIoI/EXKrnXUqvyCCPwUqNF8ImjdrnhYi+BOgshXF0k6LyZ6PEcEFXyOCC75GBBd8jQgu+BoRXPA1Irjga0Rwwde4Ci7/AF/wA03/Ab68wkTwA01fYSIvoRJ6HXa36UuoGHmNoNCLsKvsLLvb9DWCJmw/D/Ecx3CwLptsj31jV9lZc+Q2cRVcEPyCCC74GOA/XwTcfqdjAT4AAAAASUVORK5CYII=" InformativeScreenshot="716918d63dbdc67a5ab3a0026fc055b6.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Due Date" CvType="Text" DesignTimeRectangle="827, 373, 420, 42" ElementType="InputBox" FriendlyName="'Due Date'" FullSelectorArgument="&lt;webctrl tabindex='24' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='24' tag='INPUT' type='' class='input-label form-control ng-pristine ng-valid ng-touched' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAagAAAAuCAYAAAB9LI2xAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAASdSURBVHhe7dzvS+NIHMfx+6+DBCFIOSzYgyBBkCUsZkHketDFPjiP5sFVrmCXJYIi5ShIHgi6bI+jLIWlyPdmksnaaK1N/cEcvF8wDyadNF+fzIdpv/UnAQDAQgQUAMBKBBQAwEoEFADASgQUAMBKBBQAwEoEFADASgQUAMBKBBQAwEoEFADASgQUAMBKBBQAwEoEFADASgQUAMBKBBQAwEoEFADASgQUAFTxJZaG44gzZ7g1X6LOQEa3Zu1bec2axkOJ37VlYKZviYACgCqKMNgMZP9g/27sBdLYcPNg8NuSTsz6t/CKNd10Gur+SM7M/C0RUABQRREGH+Zt2VO5+sPPAsE7GKjZG3nFmggoAPi/WBgG2li62+p1J5DeOL/y2CY/7/r0ayLNbU9c/QzHFW87ku7lE0efFWrSJpddibZr4q7p19RwPWmE8Y+T1tkHc70YM+8/HsYSbprT2Zor9Z2WJP+YF18IAQUAVTwZBipkPoXZxh2d5vNlA2p60ZSaCgt3K5L4JJHkJJZoS4eAJ9H5gpBaoSZJ21JX8x/POu1K+109W+Ps9FSkqRBKE+nu1dS1QFqnak2ap9vNn34WoLWgJV19/bglQU0HlS/xdbbkRRBQAFDFEmEgfzfFU2sanZtsulxAXUl7U71v2JdxqaFhIv1QXd9sqxWPWKGm4Ud1ctpQz/6eTY2pJO/V+8zU+qD274mEKkTrH9Pyx4W3aV7/++TFPtokoACgimXCwKypFFDXR9mJpnHQU6cZfaK5G/kppiHxl+y2h1ao6TF5TaH0TXA9qP00UnNXdn8v16hHKyiH23MRUABQxTJhcLGvNuqKAXWuN369wT8+9i+y2x5aoabC9NtI0otE+p2WRDt1833UXRjerz2fl+sqD1/ir2bxMxFQAFDFEmEw/ivINuvoPJ9XCajinkpWqEmue7KrvzfS9+lmjJ9r4octaYbl09r8gFpwmntBBBQAVPFkGJiOubVQktLHZOUOOm1woMPBbP5pW2rqfWuHafZaJZVrMnMvlN51+Ruj9HBxQBXNFuGn12+iJ6AAoIqFYTDzm6PfhuZacXrxpDn77xgmiUTeTEAVTRJeJEmpYW8iyZ4nznoo/W/m0n2VazqTSK/fS8zcmKbS0jUsCKiiScLZOpKb2WaO2xs52nLE3TySFSJ2LgIKAKoowmDOf22or+vNXQ0/Lm/e//Yk0Jv6hi+t48S0Zbvi++XNf3IeZZ12jtuQpl53Est+oE80jviLmhsq1zSW3o6+7krj127W4NDvRNJQa11Xt7XfBVQRrsFh/67NvJMHnlPblbZuUT9uS7hMO3xFBBQAVFGEwYPhirelAuJ4eK9NPDe5nPlh63pdwk6aBVLpdKLkP54tfqib/y+95ufR4tbtVWqapBKHRVOEec7JlYwHeTt6+Nk8cTKQ1i+mbhVyo/yqjE5VyBZ/T/acUOLhvc8wn4mAAgBYiYACAFiJgAIAWImAAgBYiYACAFiJgAIAWImAAgBYiYACAFiJgAIAWImAAgBYiYACAFiJgAIAWImAAgBYiYACAFiJgAIAWImAAgBYiYACAFhI5D9CZaj0axqR1QAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <uix:NTypeInto.VerifyOptions>
+                            <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" ExpectedText="[in_duedate]" Mode="Appears" Retry="True">
+                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            </uix:VerifyExecutionTypeIntoOptions>
+                          </uix:NTypeInto.VerifyOptions>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="po number -Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_8" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_PoNummber]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvType="InputBox" DesignTimeRectangle="1252, 418, 180, 42" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tabindex='27' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='27' tag='INPUT' type='' class='form-control ng-pristine ng-valid ng-touched' aaname='' /&gt;" Guid="ab6c6a09-f083-42db-bfb8-30a6f1e9ce7a" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALgAAAAuCAYAAACbDNOZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEvSURBVHhe7d0xS8RAFIVR///vEjtFBBUL2cJGFhYW+3XkggMGN31yOQdeE1J+GabKuxlQTOBUuxr48XQeT2+HcffwMm7vn43Z/KTVNJt2//oX+OHjczy+vo/T+WtcLt+/T2Hb0mqaTbtpeFoEnvrzgrDZq7SbhudJvgg8R3y+AtizNJyWYxF47jFOb/YuDaflWASeyzo0mC0LnEoCp5rAqSZwqgmcagKnmsCpJnCqCZxqAqeawKkmcKoJnGoCp5rAqSZwqgmcagKnmsCpJnCqCZxqAqeawKkmcKoJnGoCp5rAqSZwqgmcagKnmsCpdjVwP8CnweoP8K0wocHqChNLqNi7tLu6hCqsEWSP0mqaTburawSn1J8jPveYXNaN2fqk1TQ7T+7pauDQQuAUG+MHdwTEc/tWJjIAAAAASUVORK5CYII=" InformativeScreenshot="7a776bfda97287e2e39d84334466db24.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="PO Number" CvType="Text" DesignTimeRectangle="827, 418, 420, 42" ElementType="InputBox" FriendlyName="'PO Number'" FullSelectorArgument="&lt;webctrl tabindex='26' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='26' tag='INPUT' type='' class='input-label form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAagAAAAuCAYAAAB9LI2xAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAUkSURBVHhe7dzvS+NIHIDx+6+LFCFIWOzSLgQpghxhMUKR7WHB3ouK2RcVe9hjieAi5RCkLwRd1uUoR2ER+d5MMmnTH2lP68FAnw/0RZppTH2Rh5mm/UUAALAQgQIAWIlAAQCsRKAAAFYiUAAAKxEoAICVCBQAwEoECgBgJQIFALASgQIAWIlAAQCsRKAAAFYiUAAAKxEoAICVCBQAwEoECsBauDooSKEw71EU550nwVlfhmbshMGddI+qUtkqjseXq1I7u5HBsxmzyNcgeZ0XyoN5atKDhGW1v5y3/+09nFbUOVUk/GaesBSBArAWkkA54n2sSe0w+/Clsqn3FaT0e9+MTgx7dSltqH0brlQPQ+leRhJdhFLbdaWoo+PWJBqYwXnSQKmH93legghUHgIFYC0kgcq5KD/3pbmtQ+RL9NM89y0UT8fJa8rNnAgNb5vJ/u2m9BfNpDKBKmxUpfO3eX6EQOUhUADWwsJAKQ8npcz+J4k+5gVlbHBejcNTPV8wjTKBCk5aUtGR2u3I5OjpQJntg6t4a2z6+SsJ1PEqp33pn/riFtU+tV38UJfoh9o96Eljx0lmekVXfDUuXcJMA9W6jqT+wSxdbpbUmNlly6fvakx6HL28uRNI+za7GGrO4ySSsJocq1humX2rIVAA1sKyQPU+OWq/J+F3tfGzK76+IPtdlaoFntXFWc+iZqKTkQbqq46gDsN00FYLlLOl4uFWpXEWSfc0SJYky3uyt1WUyqe2RJftOFT67/pfkneTBEqNU2PdX5vSvexKuK8DrY532Bu956frurhqTLEcSHiRLG8GZR0hR72fNFLJeehjOXv6WG1pnk8ulb4WgQKwFnID9TSUuwtfHH2RTSNx35KS2q6cLlt0M9HYqEnPPDMjEyh5fpBWPD47M1stUAUnkCgzoekfu/Hfq5xkzj0NroqPlgaqdDwZkv5xdhZ5lyx7qkhPzqqG0vXV89tNNUIz5/GusXip8xUIFIC1kARqwWNrTzr3ZrCJyvJApccN1GU6RzZQmorf5FLfioHaj8x2IolPSVrpe4mpML4fvzYZ40l7evnShNn7/DiO9GFHzcLU7CnzaO/rCKYhM+cxc76rI1AA1kISkjl38R2F0v3rTobZtbx+U1x9cV4aqEcJPXXc/zqDMiaX+lYM1NS49POlyZni5GuTMfOimhzT+e1mdN6LHrXr8WsIFAC80rLPoCb8T59BjUws9dkXKFcv/c0777kIFACs5EWBSu/iWzJ++KcfX8S9s9w85V/oR0t9danPC9RM9HpS0zF8s0CpOE6ftlnWi2d2ZhYZx2ohAgUAK3lZoJT0e1Dv69Kb05+Xfg9q3kwkXeqLH6NADaSzq7Yd9Xczxx1eBsmNHG8WqKkbKWSo/kfJnYzJZ1PmJompmzD0uGhfjdv0pfuP3iZQALCSFwdKectfkpi7VJYu9eljjQI1/n6Vs9OQtr4p4agqbtETLxOZ1QPliKNvRT/Q76stjWpy95+X+dxtqM49jmKxIvUz895nxhEoAFjJawIVy/ktvsbF3Yt+iy/3s5x+M15WywZKz1L0l29L5ieYitu+hLd6hpMNwaqBUjOj+4742+kXdSsS/HE385nb8LYtweiLuupcXE/qXx4z4wgUAGDNECgAgJUIFADASgQKAGAlAgUAsBKBAgBYiUABAKxEoAAAViJQAAArESgAgJUIFADASgQKAGAlAgUAsBKBAgBYiUABAKxEoAAAViJQAAArESgAgIVE/gUG2EmWi4tQXwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="product Type Into 'TEXTAREA'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_9" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="sample_Product" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="178, 550, 859, 47" CvTextArea="194, 563, 267, 21" CvTextArgument="Description of service or product..." CvType="InputBox" DesignTimeRectangle="180, 554, 856, 44" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl tabindex='41' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='41' tag='TEXTAREA' type='' class='form-control ng-valid expanding-init ng-touched ng-dirty ng-valid-parse' aaname='' /&gt;" Guid="b1e0c499-0caf-4496-a556-34b53387efa0" ImageBase64="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" InformativeScreenshot="4dbc5028a4abe86c35cc45405176bbd5.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="quantityType Into '1'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_10" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_quantity]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvTextArgument="1" CvType="Text" DesignTimeRectangle="1040, 554, 110, 42" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'1'" FullSelectorArgument="&lt;webctrl tabindex='42' tag='INPUT' type='number' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='42' tag='INPUT' type='number' class='form-control ng-pristine ng-untouched ng-valid ng-valid-required' aaname='' /&gt;" Guid="9fd00816-f060-4474-9e3f-f7dc4dc3ba7d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHIAAAAuCAYAAAD0kU3xAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFZSURBVHhe7dwxSgNBGIZhr5RCtLPxEFZWloLgDbyARepAjuAFLBXEIBiDECs7IZCgkiog+8sHybIBt/MPOx/vCwO7O9s9zHQze0EWAWnSFuTiaxkvb+9x//Qad4xODtnISFbNakhNPDxPY/75HVVVrb9S15KNjGTVxKwhpawfqIxkJbNNNaSWLCuxnGQls001pPZfKqumGZAFB6RJQJoEpElAmgSkSUCaBKRJO4Jcxbh/Er3+ZP1O/10+5M8yxsOzONg/BDKxVMjVxygG58fREyKQqSVCTuJaeEencXU7ipsLIDNLhRxcDuNxpuc5kMklQjYDMjsgTQLSJCBNAtIkIE0C0iQgTdoRJGUHpElAmgSkSUCaBKRJQJoEpElAmgSkSUCaBKRJf0Jy9LysWo+ecxlEWbVeBsH1LGUkGxm1Xs+iNCFlLVntv4zuDdnIqImotiCp3IC0KOIX152+rZdVpdoAAAAASUVORK5CYII=" InformativeScreenshot="83e646f8f961ee3f04872e7c19ed53f0.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Quantity" CvType="Text" DesignTimeRectangle="1036, 516, 115, 33" ElementType="InputBox" FriendlyName="'Quantity'" FullSelectorArgument="&lt;webctrl tabindex='29' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='29' tag='INPUT' type='' class='input-label form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHcAAAAlCAYAAAB4f3Z2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAQ2SURBVHhe7ZzPSxtBFMf7v3j33Fv+gXjJrVC8ejGH9qII1Ys/DqKH0oKFQA+iUFsqMVDcQ4kg5mBgQYJgSEiQsCBpIMQgbED49r2Z2ezml42yjeswA1/Ivnm7yc5n5r03c8grmKZtezU1/RpGesrA1VgGrsYycDWWgauxDFyNZeBqLANXYxm4GsvA1Vj/B258HuuZIuq3HXUQRu2+g1Ylj4ON2eH3TFixhT3knAIOuraPyN3S77zNY13ZZjYslCtn3euXpvDhJvdg/5E80XRgn1pIZ7LIlRpw79nYQf3kI2LD7p2g1s/b9FuqD8I9qPRevzSFDHcNWQG2g3JmeRDgmx3kmqr/x3xv34Q1CHdQBm5Asf0ik0Pr/IGVmbRQ4xV8V8CWsB2hrO7p9R20x1YtXN60VQSQzW1WkV5NdH08aGnyLTf9tNBy8kglpY+AFmyVI7IHV676HGit859IX/MnmhBx7zcqzWVREz797/C8ChVu6opfvoHs0vB+T9KvjdwmX48JNykHEG4Dl8FQL2xFpNSAS7gduNTBOf6Y/Spso3Zt4S35LKYsZCsMvgE7Q89KrdG9QbhUM3yzZHq5qyJLPrvb84gdVvkpKB/6k4n11nLISu/9wbdFQSHCVYNzTwM9tN9XLMODwYPE1+PBXfzt0Ir1JoSvLZsh+XYJV97nR4+EWq1+GH5Szo1/xyVHDVrp/rPnccyv8+cMi11bNBQ+3HFylFoBEtyYK3eUxLM6sL/IawmNYG/3+nXtPZPgsQVVArsi6gRC89IZ6mSpn/Lq9/yioRezcj3NJJextU+h9LSAsuPnX/msQYiewoHr1xVeaH530qCrf6ei51CoOfegxK/979zztJxLIZEH32su7ZtvqrArPLiTgzs1vSdD89V3Cs3LcndAIfldj080FCpcb1a7F197quXFUyp8uFpdoNk+olrG1V7XX2gjjxaZJVwvHLZxub+GmYCfLGYmCfc1Pl9QnqcItftBhuSa9bzbulEKFe7U9HtZXPTtc8Vp0A0PSBstsfqC+1y1EnoKkoQafA/u4MALxZfV900W7tSngqjSyxX+cgfpub7+iChkuKRRJ1RXatvCzbECYSxBYVruR1vXga2LSxPhzl+5no/rFMiHc24RderHE3OuzJVUCF1kh2yFpI9MHzQR6R14K+Q/bwc2fzc3tb3y+6Kj8OEKzWJlxNly+ndRhFv3RoVp9o9vIl3yiyN5MCEHu5tz+3wYfs0+wsqqDI2uvSP8xoUrcrg4LaPWzGNlCNzY9hlqHsQSH3T4z5NbMArJv6IZkln/Ce7Dkof2BOcketuHcdUN6/2nVRHSs8B98Yp/lWFZVMxD+iMiA/cxWjqCXaqixuF7SOiPmgzcx2gpK7dxVD+Urc1Ir1qWgauxDFyNZeBqLANXYxm4GsvA1VgGrsYycDWW+U8MbRvwF4OtB/prrPFzAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="amount Type Into 'Rate'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_11" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_amount]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvType="InputBox" DesignTimeRectangle="1153, 552, 151, 46" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'Rate'" Guid="b0330825-f141-426c-84da-aee88dc6c42b" InformativeScreenshot="06d532988a253df222415bb11d62b4e9.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Rate" CvType="Text" DesignTimeRectangle="1166, 522, 38, 16" ElementType="Text" FriendlyName="'Rate'" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="387.2,238.4" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="HardwareEvents" MovementUnits="10" Version="V3">
+                          <uix:NMouseScroll.SearchedElement>
+                            <uix:SearchedElement>
+                              <uix:SearchedElement.Target>
+                                <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/18" CvTextArgument="0 %" CvType="Text" DesignTimeRectangle="1239, 694, 181, 42" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'0'" FullSelectorArgument="&lt;webctrl tabindex='1005' tag='INPUT' type='number' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='1005' tag='INPUT' type='number' class='form-control ng-pristine ng-untouched ng-valid ng-valid-required' aaname='' /&gt;" Guid="17b4b014-13bb-4a07-9541-839c5d71750a" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALkAAAAuCAYAAAB0zrinAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAASSSURBVHhe7Z3fS1tnGMf3L3kh6VW8Wa8KXghCYTApyNhNKQQGoxR7aUGwJWxgmUXndmN/zDXbWusqUqxt54+5zK5ZNJou/iIzna0a6xG7797n5D3Hk+SsnpgK5u33Aw+c501ORPicJ895ziHnAxBiOJScGA8lJ8bjK3k2t475zCpSf60wGDUR4qt460eR5C83tjD5dA6J+UWsZF9gde0fBqMmQnwVb8Vf8diLK/n2joXH0wnk1l/pFUJqD/FXPBafHVzJ554vY3F1TWeE1C7isfjs4Er+SzyJHWtXZ4TULuKx+OzgSv5w6g+9RUjt4/WZkhMjoeTEeCg5MR5KToyHkhPjoeTEeCg5MR5KTo41+fw2krMpnR0OSv4+kJtA92enEa4/gbqGU2i5eAPxDf3aQeST6IucQkjtGz7TgTsZve5hob8VoUtj2L9D5N3xeHwSV768ip8Gf9YrlUPJTWd9BOcbTiD0URv6BicwGovik5NK9uYuxA+00sJ4Rxihi/ewlLewMBBBqDFavJ/9+REMZHV+CLJ/r+G335/ix7tDuDnwQ1mI5NWITskNJ9HdpKp3B0bzekFYieGsqswtN/dvXPJlbwKd6n2dkzq3xtBeH8YXMzpXB0E82oSmnv17QyplajruShwktra8/0gwKLnRJNHdqKp41LVSs4nhC6qan4shp1d8yRYOhs5pnWOmIL2Tp2+gpfQAqoDllVVb3K5rX2NoeARz8wtYXFouCqddkZhNzes9K4OSm0zuni3p2Vi5ygv9H6OuPorxPb3gx1sruYXRS2G09Kftlw7D9Vu3bXkfjD7SK+WI6F/1fnNowQVKbjJOJXYk9ZCLRZTkB/XSuiePxLDg9OTNPUjIgZHsQVNpf14hV1UFF8kzi0t65Wig5CaTUe1EUbuxTzDJFb7TlRwGzoVx/v6m2raQ6IvgQ3VyW3eyFe2xtFoJhpxU3h0a1tnRQclNpupK7o811uFWdOuJ2pbpStqClVZ/r6FJHVRHMUwsIBOW/lvf6ywYlNxkqu3J/dhLo/9MGO1jBZHHL6sKfnnC3i706epEt6v0RDcYG5vyzfB2pL3p7v1WZ8Gg5EZzwHTl0xgq7YY37rch5E5lpG1Rn+P5/Hi0OA+KM0V5+OiJXilHqri85/p3t/VKMCi54VQ1Jy/FmkFn42l0e8bi76KSJ+dStrwS0qeXjhETyTl0Xet135P4c1bvGQxKbjpZ1bLISWHz5yVXPKOIVzjfti/fXxiB946AQk/ehjtZpycvPggOQkaDjrxB4jCjREr+PpCt4t4Vh/wY2htaUT4WL5muDFb47aDwXvCRSi65NyamplU1n8Va7oXeozIoOTkWOKJXcyPW/0HJybHh5auj+cU2Sk6Mh5IT46HkxHgoOTEeSk6Mh5IT46HkxHgoOTEeSk6Mx1dyeaBQ/vWOzgipXcRj8dnBlfz5UtZ+TBwhtY54LD47uJK/efMvfn2WQoYPxyI1jPgrHovPDq7kgrW7i2epjF3qZ9NLvg8FZTCOY4iv4q34Kx57KZLcYWv7tf10W7+HgjIYxzHEV/G2HOA/1b1IFqzvPGsAAAAASUVORK5CYII=" InformativeScreenshot="5a74afdd15e880c5c9bcfa1de7b564f8.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target DesignTimeRectangle="826, 694, 408, 43" ElementType="InputBox" FriendlyName="'Tax'" FullSelectorArgument="&lt;webctrl tabindex='1004' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='1004' tag='INPUT' type='' class='input-label form-control ng-pristine ng-untouched ng-valid' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAZwAAAAvCAYAAADXaHxWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFMSURBVHhe7dq9SgNBGIbRvTQvygvwLsTGMoW9gpWNIIg/KCrBqFFCFGxFYzfiMhqJjYHd1+YcGHb2W6Z+ip2mVPvHl3UHAN0THAAiBAeACMEBIEJwAIgQHAAiBAeACMEBIEJwAIgQHAAiBAeAzmyNz0qzuVo2hgd1Mic4AHRm7XS3Dc7nc5HgANAZwQEgQnAAiBAcADq393Tza/0MzuI3wQFgaV+30ZZa9azgAPBnggPAv/IPB4AIwQEgQnAAiBAcACIEB4CI7clVWdlZL4PbkzqZa4PzNnsvh+fX7QAA+tAGZ3g3KQ+Pz+0AAPrQHF2Myuh+Wl8BoB/Ny+usbgGgP9+XBgCgT4IDQITgABAhOABECA4AEYIDQITgABAhOABECA4AEYIDQITgABAhOABECA4AEYIDQITgABAhOABECA4AEYIDQITgABBQygd8pwKv5bbdlgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:SearchedElement.Target>
+                              <uix:SearchedElement.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:SearchedElement.Timeout>
+                            </uix:SearchedElement>
+                          </uix:NMouseScroll.SearchedElement>
+                        </uix:NMouseScroll>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.5" DisplayName="Type Into 'Tax'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_12" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="[in_taxconfig]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="1236, 594, 185, 45" CvTextArea="1366, 607, 17, 16" CvTextArgument="%" CvType="InputBox" DesignTimeRectangle="1236, 595, 184, 45" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'Tax'" FullSelectorArgument="&lt;webctrl tabindex='1005' tag='INPUT' type='number' parentclass='input-amount is-percent with-selector' /&gt;" Guid="f85349cd-1f25-4454-92a5-0920daf23478" InformativeScreenshot="d8916da9f5635c96f2f079b8bc7c6800.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArgument="Tax" CvType="Text" DesignTimeRectangle="1189, 606, 30, 17" ElementType="Text" FriendlyName="'Tax'" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ContinueOnError="True" DisplayName="notes  Type Into 'TEXTAREA'" EmptyFieldMode="MultiLine" sap:VirtualizedContainerService.HintSize="387.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_14" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Text="For any inquiries or disputes regarding this invoice, please contact our customer support at [Contact Details]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/3" CvElementArea="178, 518, 651, 79" CvTextArea="193, 530, 408, 21" CvTextArgument="Notes - any relevant information not already covered" CvType="InputBox" DesignTimeRectangle="178, 572, 649, 75" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl tabindex='1015' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl tabindex='1015' tag='TEXTAREA' type='' class='notes form-control ng-pristine ng-valid expanding-init ng-touched' aaname='' /&gt;" Guid="1b26840f-db53-49f6-b8a9-9de59bcbee27" ImageBase64="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" InformativeScreenshot="1b623454b25b6b4b4172cb147169d663.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Up" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="387.2,238.4" sap2010:WorkflowViewState.IdRef="NMouseScroll_2" InteractionMode="HardwareEvents" MovementUnits="10" Version="V3">
+                          <uix:NMouseScroll.SearchedElement>
+                            <uix:SearchedElement>
+                              <uix:SearchedElement.Target>
+                                <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/3" CvElementArea="1516, 259, 251, 52" CvTextArea="1575, 276, 157, 18" CvTextArgument="Download Invoice" CvType="Button" DesignTimeRectangle="1517, 258, 251, 53" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'Download Invoice'" Guid="ba563dca-f3b4-4748-9f58-73ee800ae028" InformativeScreenshot="594021d4542dc9785abfff8e4cec8210.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive" />
+                              </uix:SearchedElement.Target>
+                              <uix:SearchedElement.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:SearchedElement.Timeout>
+                            </uix:SearchedElement>
+                          </uix:NMouseScroll.SearchedElement>
+                        </uix:NMouseScroll>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="1" DisplayName="Click 'Download Invoice'" sap:VirtualizedContainerService.HintSize="387.2,157.6" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="1518, 321, 248, 52" CvTextArea="1574, 337, 158, 18" CvTextArgument="Download Invoice" CvType="Button" DesignTimeRectangle="1518, 321, 248, 52" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'Download Invoice'" Guid="620835ca-d3ee-438a-816e-07ee39615744" InformativeScreenshot="3c17d7feff4749f093fe8946bde597cb.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'PDF (Recommended)'" sap:VirtualizedContainerService.HintSize="387.2,157.6" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3de11fbd-c6f6-4138-8718-92c7848378bd" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://invoice-generator.com/#/7" CvElementArea="687, 389, 272, 115" CvTextArea="723, 460, 198, 22" CvTextArgument="PDF (Recommended)" CvType="Button" DesignTimeRectangle="688, 389, 272, 114" DesignTimeScaleFactor="1.25" ElementType="Button" FriendlyName="'PDF (Recommended)'" Guid="2ce3c742-732e-42c6-81cd-74ac89a433be" InformativeScreenshot="57627c88ad9307140e4fd4193025af55.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,144" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Invoice generated successfully of&quot; + in_first_name+ &quot;-&quot; + invoiceNumber.ToString]" />
+                      </Sequence>
+                    </ActivityAction>
+                  </uix:NApplicationCard.Body>
+                  <uix:NApplicationCard.TargetApp>
+                    <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACz0lEQVRYR7WXOY8TQRCFd7nEsUQcQoI/wJUBEiAChJAgAwkScgIQhPsDQGsgISAh4oqWCJESgQQZN0SwEBKAxCXuw4v5Xm+V1e7p6TFeU9Jnd1dXzXsee3rGI53W+AR8gl/wM+IHnIMlMKLQu3EAXkHa04brsBpCj0JjYyc8B+/7puRSOGOJTsJ3OAGLwA+yF15AWituwToItYn4VngEcX3bF/UpSyZOwkKQ+EtIa8RNWAvhmBnxx5D2TMeFJRNfYRJ0+tI1MYi4mArFCiaiZKKOQcXvw47Q4EFC/IuJQcUfwhYIDaNhYKEx9GOiJL4N6sQfQBAXejkI88PEwhZLJprEn0DaIyS+Gbp9GryBozC3myQ0hpyJ4YkrmGjz+AhHoGRCm4eu8+GJK0jowCr6AHUmtFkdhg02j9dESVzH3QPdvp4g6Qa8uGIiF1o3SuJCZ/gCLAfrjoJkbEA0mlDeaBJ3puESVE2QSA2IWhOaG/2KO3kTTHT30mlKGyom9G6UxO/BWXgf5ZyqCQar4DL8gbShx4RREvdf+xw4Brq60ho3sQy6n2oFXIGSCR20H3E/5jwombgIK/0sNJl4Bzqt2sPTNVG5zm1cMvEbroViBZMmE7mc0F0tu8lYrmSibaUzQaLJREqtuIet1ZnoNaAg6Sb0w9R3FTfENIp7WE3ORK0BsR8+QyzqZMVtvhG0bY9l1lIT2a9AbIenkAqLkrgeSO+A7p4tWAxWkTUx80yosEUxG/Hb4LV6rC+ZOA5v46QYlrhTMrEADvlEDFvcKZkY9cH/EneyJkKQ2AWlR+fZijt5E0ymINcwqLj+vFwF/aNK16omGGhPTgsHFdfftt0ggdOQe6LuNcFL+kByFzZBV9zHsB50ncf1jv6wStxrJXAKJJjWuokxFcqlb7nPQD/IcBAPm6+BG6A61Tu6Z7yGfdDts7F2w/MQ13vPl05rfOIvZFvuSDW7WeQAAAAASUVORK5CYII=" InformativeScreenshot="a64db41c0503a1f9ba5ded82c210c520.jpg" Selector="&lt;html app='msedge.exe' title='Free Invoice Generator' /&gt;" Title="Free Invoice Generator - Personal - Microsoft​ Edge" Url="[in_url + in_InTrans_number.ToString()]" />
+                  </uix:NApplicationCard.TargetApp>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NApplicationCard>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="486.4,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Browser failed to open:&quot;]" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </ui:RetryScope.ActivityBody>
+      <ui:RetryScope.Condition>
+        <ActivityFunc x:TypeArguments="x:Boolean" />
+      </ui:RetryScope.Condition>
+    </ui:RetryScope>
+    <Assign sap2010:Annotation.AnnotationText="assigning a local invoice value adding transaction number so all invoice will be in squence and increment by end digit 1&#xA;" sap:VirtualizedContainerService.HintSize="624,141.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[out_invoiceID]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32" xml:space="preserve">[invoiceNumber +  in_InTrans_number]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <TryCatch sap2010:Annotation.AnnotationText="writing a invocie id to specified column in worksheet&#xA;" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="624,729.6" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="449.6,454.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:WriteCell sap2010:Annotation.AnnotationText="writing a invocie id to specified column in worksheet&#xA;" Cell="[&quot;D&quot; + (in_InTrans_number+1).ToString]" DisplayName="Write Cell Workbook" sap:VirtualizedContainerService.HintSize="387.2,160" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="[in_sheetname]" Text="[out_invoiceID.ToString]" WorkbookPath="[in_invociepath]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:WriteCell>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;successfully written:&quot; +out_invoiceID.ToString +&quot;in&quot;+in_sheetname]" />
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="si:FileNotFoundException" sap:VirtualizedContainerService.HintSize="452.8,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="si:FileNotFoundException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="si:FileNotFoundException" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;plz check file path &quot; + exception.Message]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
